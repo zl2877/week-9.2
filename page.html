@@ -1,0 +1,58 @@
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+        //document.getElementById("checkair").addEventListener("click", function() {});
+
+        $("#checkair").click(
+            function(){
+                let city = $("#city").val
+                console.log(city)
+            
+
+                $.ajax(
+                    {
+                        url: "http://api.waqi.info/feed/" + city + "/?token=79cdea15654b2201b171a4f3da21965e06ff760a", 
+                        dataType: 'json',
+
+                        success: function(data) {
+                            //alert("Air quality: "+ data.data.aqi)
+
+                            document.getElementById("air").innerHTML = data.data.aqi;
+                            $("#air").html(data.data.aqi);
+
+                            },
+
+                        error: function() {
+                            alert("error");
+
+                        }
+
+                    }
+                    );
+        }
+        );    
+          
+            });
+</script>
+
+<body>
+    <br>
+
+    Enter a city to check its air quality today
+    <br>
+
+     <input type="text" name="city" id = "city1"><input type="button" id = "checkair" value = "Check">
+        
+        <br><br>
+        Air quality:
+        <h1 id="air">0</h1>
+
+
+
+</body>
+
+
+
+
+</html>
+
